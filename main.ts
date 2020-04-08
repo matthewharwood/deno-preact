@@ -7,20 +7,21 @@ import {
   green,
   cyan,
   bold,
-  yellow,
+  yellow
 } from "fmt";
 import {
   Application,
   Context,
   Status,
   send,
-  HttpError,
+  HttpError
 } from "https://deno.land/x/oak/mod.ts";
 import { routes, allowedMethods } from "./server/routes.ts";
 
 function notFound(context: Context) {
   context.response.status = Status.NotFound;
-  context.response.body = `<html><body><h1>404 - Not Found</h1><p>Path <code>${context.request.url}</code> not found.`;
+  context.response.body =
+    `<html><body><h1>404 - Not Found</h1><p>Path <code>${context.request.url}</code> not found.`;
 }
 
 const app = new Application();
@@ -33,27 +34,27 @@ app.use(async (
   try {
     await next();
   } catch (error) {
-    if(error instanceof HttpError){
+    if (error instanceof HttpError) {
       //Add error catching here
-      switch(error.status){
+      switch (error.status) {
         case 404:
           response.status = Status.NotFound;
           response.body = {
-            message: 'Requested file not found',
+            message: "Requested file not found",
           };
           break;
         default:
           response.status = Status.InternalServerError;
           response.body = {
-            message: 'Internal Server Error',
+            message: "Internal Server Error",
           };
           console.error(`Reported Error: ${error.message}`);
           break;
       }
-    }else{
+    } else {
       response.status = 500;
       response.body = {
-        message: 'Internal Server Error',
+        message: "Internal Server Error",
       };
       console.error(`Reported Error: ${error.message}`);
     }
@@ -69,8 +70,8 @@ app.use(async (context, next) => {
   const rt = context.response.headers.get("X-Response-Time");
   console.log(
     `${green(context.request.method)} ${cyan(context.request.url)} - ${bold(
-      String(rt)
-    )}`
+      String(rt),
+    )}`,
   );
 });
 
@@ -84,15 +85,15 @@ app.use(async (context, next) => {
 
 app.use(async (context) => {
   //Send to the app or serve static file
-  if(context.request.path.split("/")[1] === 'public'){
-    const file = context.request.path.replace(/^\/public/, '');
+  if (context.request.path.split("/")[1] === "public") {
+    const file = context.request.path.replace(/^\/public/, "");
     await send(context, file, {
       root: "public",
     });
-  }  
+  }
 });
 
 const address = "127.0.0.1:8000";
-console.log(bold("Start listening on ") + yellow('http://' + address));
+console.log(bold("Start listening on ") + yellow("http://" + address));
 await app.listen(address);
 console.log(bold("Finished."));

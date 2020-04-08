@@ -1,4 +1,3 @@
-
 export const Document = ({ title, content }: any) => {
   return `
     <!DOCTYPE html>
@@ -32,4 +31,3 @@ export const Document = ({ title, content }: any) => {
       </body >
     </html>`;
 };
-

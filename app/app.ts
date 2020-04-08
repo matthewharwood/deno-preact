@@ -9,7 +9,7 @@ export const BaseApp = (props: string) => {
     setLikes(likes + 1);
   };
 
-  return html`
+  return html `
     <div>HOW MANY LIKES ${likes}</div>
     <button onClick=${handleClick}>Increment</button>
   `;
