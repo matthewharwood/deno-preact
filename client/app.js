@@ -1,10 +1,10 @@
 import { html } from "htm/preact";
 import { useState } from "preact/hooks";
-import { withHydration } from "./with-hydration.ts";
+import { withHydration } from "./with-hydration.js";
 
-export const BaseApp = (props: string) => {
+export const BaseApp = () => {
   const [likes, setLikes] = useState(0);
-  const handleClick = (e: any) => {
+  const handleClick = (e) => {
     e.preventDefault();
     setLikes(likes + 1);
   };

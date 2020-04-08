@@ -410,9 +410,9 @@ System.register("https://unpkg.com/preact@10.3.4/hooks/dist/hooks.module", ["htt
         }
     };
 });
-System.register("file:///Users/harwood/matt/deno-preact/with-hydration", ["https://unpkg.com/htm@3.0.3/preact/index.module"], function (exports_5, context_5) {
+System.register("file:///Users/harwood/matt/deno-preact/app/with-hydration", ["https://unpkg.com/htm@3.0.3/preact/index.module"], function (exports_5, context_5) {
     "use strict";
-    var preact_3, id, withHydration;
+    var preact_3, isServer, id, withHydration;
     var __moduleName = context_5 && context_5.id;
     return {
         setters: [
@@ -422,7 +422,7 @@ System.register("file:///Users/harwood/matt/deno-preact/with-hydration", ["https
         ],
         execute: function () {
             //@ts-ignore
-            // const isServer = window && window.matchMedia;
+            isServer = window && window.matchMedia;
             id = 0;
             exports_5("withHydration", withHydration = (Component) => (props) => {
                 id += 1;
@@ -430,19 +430,16 @@ System.register("file:///Users/harwood/matt/deno-preact/with-hydration", ["https
     window.__STATE__.components[${id}]={name:${JSON.stringify(Component.name)},props:${JSON.stringify(props)}}
   `;
                 return preact_3.html `
-    ${preact_3.html `<script
-      dangerouslySetInnerHTML=${{ __html: scriptSrc }}
-      data-cmp-id=${id}
-    ></script>`}
+    ${isServer && preact_3.html `<script dangerouslySetInnerHTML=${{ __html: scriptSrc }} data-cmp-id=${id}></script>`}
     <${Component} ...${props} />
   `;
             });
         }
     };
 });
-System.register("file:///Users/harwood/matt/deno-preact/app", ["https://unpkg.com/htm@3.0.3/preact/index.module", "https://unpkg.com/preact@10.3.4/hooks/dist/hooks.module", "file:///Users/harwood/matt/deno-preact/with-hydration"], function (exports_6, context_6) {
+System.register("file:///Users/harwood/matt/deno-preact/app/app", ["https://unpkg.com/htm@3.0.3/preact/index.module", "https://unpkg.com/preact@10.3.4/hooks/dist/hooks.module", "file:///Users/harwood/matt/deno-preact/app/with-hydration"], function (exports_6, context_6) {
     "use strict";
-    var preact_4, hooks_1, with_hydration_ts_1, BaseApp, App;
+    var preact_4, hooks_1, with_hydration_js_1, BaseApp, App;
     var __moduleName = context_6 && context_6.id;
     return {
         setters: [
@@ -452,12 +449,12 @@ System.register("file:///Users/harwood/matt/deno-preact/app", ["https://unpkg.co
             function (hooks_1_1) {
                 hooks_1 = hooks_1_1;
             },
-            function (with_hydration_ts_1_1) {
-                with_hydration_ts_1 = with_hydration_ts_1_1;
+            function (with_hydration_js_1_1) {
+                with_hydration_js_1 = with_hydration_js_1_1;
             }
         ],
         execute: function () {
-            exports_6("BaseApp", BaseApp = (props) => {
+            exports_6("BaseApp", BaseApp = () => {
                 const [likes, setLikes] = hooks_1.useState(0);
                 const handleClick = (e) => {
                     e.preventDefault();
@@ -468,11 +465,11 @@ System.register("file:///Users/harwood/matt/deno-preact/app", ["https://unpkg.co
     <button onClick=${handleClick}>Increment</button>
   `;
             });
-            exports_6("App", App = with_hydration_ts_1.withHydration(BaseApp));
+            exports_6("App", App = with_hydration_js_1.withHydration(BaseApp));
         }
     };
 });
 
-const __exp = __instantiate("file:///Users/harwood/matt/deno-preact/app");
+const __exp = __instantiate("file:///Users/harwood/matt/deno-preact/app/app");
 export const BaseApp = __exp["BaseApp"];
 export const App = __exp["App"];
