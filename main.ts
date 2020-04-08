@@ -48,7 +48,7 @@ app.use(async (context) => {
   //Send to the app or serve static file
   let resource;
   switch (context.request.path.split("/")[1]) {
-    case "static":
+    case "resources":
       resource = context.request.path;
       break;
     default:
