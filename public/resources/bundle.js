@@ -412,7 +412,7 @@ System.register("https://unpkg.com/preact@10.3.4/hooks/dist/hooks.module", ["htt
 });
 System.register("file:///Users/harwood/matt/deno-preact/with-hydration", ["https://unpkg.com/htm@3.0.3/preact/index.module"], function (exports_5, context_5) {
     "use strict";
-    var preact_3, isServer, id, withHydration;
+    var preact_3, id, withHydration;
     var __moduleName = context_5 && context_5.id;
     return {
         setters: [
@@ -422,17 +422,15 @@ System.register("file:///Users/harwood/matt/deno-preact/with-hydration", ["https
         ],
         execute: function () {
             //@ts-ignore
-            isServer = typeof window?.matchMedia === `undefined`;
+            // const isServer = window && window.matchMedia;
             id = 0;
             exports_5("withHydration", withHydration = (Component) => (props) => {
                 id += 1;
                 const scriptSrc = `
     window.__STATE__.components[${id}]={name:${JSON.stringify(Component.name)},props:${JSON.stringify(props)}}
   `;
-                console.log(isServer, window);
                 return preact_3.html `
-    ${isServer &&
-                    preact_3.html `<script
+    ${preact_3.html `<script
       dangerouslySetInnerHTML=${{ __html: scriptSrc }}
       data-cmp-id=${id}
     ></script>`}

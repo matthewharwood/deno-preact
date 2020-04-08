@@ -1,6 +1,6 @@
 import { html } from "htm/preact";
 //@ts-ignore
-const isServer = typeof window?.matchMedia === `undefined`;
+const isServer = window && window.matchMedia;
 
 let id = 0;
 
@@ -14,7 +14,7 @@ export const withHydration = (Component: any) => (props: any) => {
   `;
 
   return html`
-    ${isServer &&
+    ${
     html`<script
       dangerouslySetInnerHTML=${{ __html: scriptSrc }}
       data-cmp-id=${id}

@@ -1,4 +1,4 @@
-import { html, Component } from "htm/preact";
+import { html } from "htm/preact";
 import { useState } from "preact/hooks";
 import { withHydration } from "./with-hydration.ts";
 

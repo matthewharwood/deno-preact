@@ -1,3 +1,4 @@
+
 export const Document = ({ title, content }: any) => {
   return `
     <!DOCTYPE html>
@@ -27,7 +28,8 @@ export const Document = ({ title, content }: any) => {
       <body>
         <script>window.__STATE__={components:{}}</script>
         ${content}
-        <script type="module" src="./bundle.js"></script>
+        <script type="module" src="../public/resources/bundle.js"></script>
       </body >
     </html>`;
 };
+
