@@ -12,7 +12,7 @@ export const withHydration = (Component: any) => (props: any) => {
     Component.name
   )},props:${JSON.stringify(props)}}
   `;
-  console.log(isServer, window);
+
   return html`
     ${isServer &&
     html`<script
