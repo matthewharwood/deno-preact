@@ -28,7 +28,7 @@ export const Document = ({ title, content }: any) => {
       <body>
         <script>window.__STATE__={components:{}}</script>
         ${content}
-        <script type="module" src="../public/resources/bundle.js"></script>
+        <script type="module" src="public/bundle.js"></script>
       </body >
     </html>`;
 };

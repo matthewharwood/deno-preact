@@ -14,6 +14,7 @@ import {
   Context,
   Status,
   send,
+  HttpError,
 } from "https://deno.land/x/oak/mod.ts";
 import { routes, allowedMethods } from "./server/routes.ts";
 
@@ -24,6 +25,44 @@ function notFound(context: Context) {
 
 const app = new Application();
 
+//Middleware for catching and throwing HTTP errors
+app.use(async (
+  { response }: Context,
+  next: () => Promise<void>,
+) => {
+  try {
+    await next();
+  } catch (error) {
+    if(error instanceof HttpError){
+      //Add error catching here
+      switch(error.status){
+        case 404:
+          response.status = Status.NotFound;
+          response.body = {
+            message: 'Requested file not found',
+          };
+          break;
+        default:
+          response.status = Status.InternalServerError;
+          response.body = {
+            message: 'Internal Server Error',
+          };
+          console.error(`Reported Error: ${error.message}`);
+          break;
+      }
+    }else{
+      response.status = 500;
+      response.body = {
+        message: 'Internal Server Error',
+      };
+      console.error(`Reported Error: ${error.message}`);
+    }
+  }
+});
+
+// Use the router
+app.use(routes);
+app.use(allowedMethods);
 
 app.use(async (context, next) => {
   await next();
@@ -43,28 +82,15 @@ app.use(async (context, next) => {
   context.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
-
 app.use(async (context) => {
   //Send to the app or serve static file
-  let resource;
-  switch (context.request.path.split("/")[1]) {
-    case "resources":
-      resource = context.request.path;
-      break;
-    default:
-      resource = "index.html";
-  }
-
-  await send(context, resource, {
-    root: "public",
-  });
+  if(context.request.path.split("/")[1] === 'public'){
+    const file = context.request.path.replace(/^\/public/, '');
+    await send(context, file, {
+      root: "public",
+    });
+  }  
 });
-// Use the router
-app.use(routes);
-app.use(allowedMethods);
-
-// A basic 404 page
-app.use(notFound);
 
 const address = "127.0.0.1:8000";
 console.log(bold("Start listening on ") + yellow('http://' + address));
