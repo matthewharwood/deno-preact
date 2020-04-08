@@ -1,0 +1,1 @@
+deno --allow-net --importmap=imports.json main.ts

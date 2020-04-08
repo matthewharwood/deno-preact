@@ -1,0 +1,9 @@
+{
+    "imports": {
+        "htm": "https://unpkg.com/htm@3.0.3/dist/htm.module.js",
+        "htm/preact": "https://unpkg.com/htm@3.0.3/preact/index.module.js",
+        "preact": "https://unpkg.com/preact@10.3.4/dist/preact.module.js",
+        "preact/hooks": "https://unpkg.com/preact@10.3.4/hooks/dist/hooks.module.js",
+        "preact-render-to-string": "https://unpkg.com/preact-render-to-string@5.1.4/dist/index.module.js"
+    }
+}
