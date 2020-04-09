@@ -1,11 +1,11 @@
-import { App } from "../client/app.js";
+import { Counter } from "../client/components/counter.js";
 import { html } from "htm/preact";
 import { RenderDocument } from "./document.ts";
 import { Router } from "oak";
 
 const router = new Router();
 router.get("/", (context, next) => {
-  context.response.body = RenderDocument("About", html `<${App} url=${"hi"} />`);
+  context.response.body = RenderDocument("Home Page", html `<${Counter} />`);
 });
 
 export const routes = router.routes();

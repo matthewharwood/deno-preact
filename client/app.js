@@ -1,18 +1,17 @@
-import { html } from "htm/preact";
-import { useState } from "preact/hooks";
-import { withHydration } from "./with-hydration.js";
+import { html, render } from 'htm/preact';
 
-export const BaseApp = () => {
-  const [likes, setLikes] = useState(0);
-  const handleClick = (e) => {
-    e.preventDefault();
-    setLikes(likes + 1);
-  };
+import {Counter} from './components/counter';
 
-  return html `
-    <div>HOW MANY LIKES ${likes}</div>
-    <button onClick=${handleClick}>Increment</button>
-  `;
+const componentMap = {
+  Counter,
 };
 
-export const App = withHydration(BaseApp);
+const $componentMarkers = document.querySelectorAll(`[data-cmp-id]`);
+
+Array.from($componentMarkers).forEach(($marker) => {
+  const $component = $marker.nextElementSibling;
+  const { name, props } = window.__STATE__.components[$marker.dataset.cmpId];
+  const Component = componentMap[name];
+
+  render(html`<${Component} ...${props}/>`, $component.parentNode, $component);
+});

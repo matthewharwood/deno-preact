@@ -1,0 +1,30 @@
+{
+  "name": "deno-preact",
+  "version": "1.0.0",
+  "description": "Prerender deno --allow-net --allow-read=public --importmap=imports.json main.ts",
+  "module": "dist/app.module.js",
+  "scripts": {
+    "build": "microbundle client/app.js -f modern",
+    "dev": "microbundle watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewharwood/deno-preact.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewharwood/deno-preact/issues"
+  },
+  "homepage": "https://github.com/matthewharwood/deno-preact#readme",
+  "dependencies": {
+    "htm": "^3.0.3",
+    "preact": "^10.4.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.9.5",
+    "babel-plugin-htm": "^3.0.0",
+    "microbundle": "^0.11.0"
+  }
+}
