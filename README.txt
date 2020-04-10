@@ -1,5 +1,6 @@
-Bootstrap
-`$ npm i`
+Bootstrap and Run All - Watch
+npm i && deno --allow-run --allow-read main.ts
+
 
 Bundle
 npm run build
@@ -12,6 +13,8 @@ deno --allow-net --allow-read --importmap=imports.json server.ts
 
 Prerender & Bundle  & Serve:
 deno --allow-write --allow-read  --importmap=imports.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=imports.json server.ts
+
+
 
 
 
