@@ -4,6 +4,6 @@
 
 import { Counter } from "../../client/components/app.js";
 import { html } from "htm/preact";
-import { Document } from "../document.ts";
+import { Document } from "../document.js";
 
 export const Home = Document("About", html `<${Counter} url=${"hi"} />`);

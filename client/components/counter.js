@@ -1,8 +1,10 @@
-import { html } from "htm/preact";
+import htm from 'htm'
+import { h } from "preact";
+const html = htm.bind(h);
 import { useState } from "preact/hooks";
-import { withHydration } from "../with-hydration.js";
+import {withHydration} from '../with-hydration.js';
 
-export const BaseCounter = () => {
+export const Counter = ({id}) => {
   const [likes, setLikes] = useState(0);
   const handleClick = (e) => {
     e.preventDefault();
@@ -10,9 +12,8 @@ export const BaseCounter = () => {
   };
 
   return html `
-    <div>HOW MANY LIKES ${likes}</div>
-    <button onClick=${handleClick}>Increment</button>
+      <div>HOW MANY LIKES ${likes}</div>
+      <button onClick=${handleClick}>Increment</button>
   `;
 };
-
-export const Counter = withHydration(BaseCounter);
+export const HydrateCounter = withHydration(Counter);

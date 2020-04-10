@@ -27,10 +27,11 @@ export const Document = ({ title, content }: any) => {
         </style>
       </head>
       <body>
-        <script>window.__STATE__={components:{}}</script>
-        ${content}
-        <script type="module" src="../public/bundle.js"></script>
-      </body >
+        <main>
+          ${content}
+        </main>
+        <script type="module" src="deno-preact.module.js"></script>
+      </body>
     </html>`;
 };
 

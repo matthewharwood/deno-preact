@@ -1,4 +1,6 @@
-import { html } from "htm/preact";
+import htm from 'htm';
+import { h } from "preact";
+const html = htm.bind(h);
 //@ts-ignore
 const isServer = typeof window.matchMedia === 'undefined';
 
@@ -7,15 +9,12 @@ let id = 0;
 export const withHydration = (Component) =>
   (props) => {
     id += 1;
-    console.log(typeof window.matchMedia === 'undefined');
-    const scriptSrc = `
-    window.__STATE__.components[${id}]={name:${JSON.stringify(
-      Component.name,
-    )},props:${JSON.stringify(props)}}
-  `;
+    const scriptSrc = JSON.stringify({"props": props});
 
-    return html `
-    ${isServer && html`<script dangerouslySetInnerHTML=${{ __html: scriptSrc }} data-cmp-id=${id}></script>`}
-    <${Component} ...${props} />
+    return html`
+    <div data-component="Counter">
+        <${Component} ...${props} />
+        ${isServer && html`<script dangerouslySetInnerHTML=${{ __html: scriptSrc }} type="text/hydration"></script>`}
+    </div>
   `;
   };

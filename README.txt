@@ -1,8 +1,19 @@
-Prerender
-deno --allow-net --allow-read=public --importmap=imports.json main.ts
+Bootstrap
+`$ npm i`
 
-Bundle CLient:
-rollup --config --file dist/app.js --format iife --name App client/app.js
+Bundle
+npm run build
+
+Prerender
+deno --allow-write --allow-read --importmap=imports.json prerender.ts
+
+Server:
+deno --allow-net --allow-read --importmap=imports.json server.ts
+
+Prerender & Bundle  & Serve:
+deno --allow-write --allow-read  --importmap=imports.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=imports.json server.ts
+
+
 
 
 

@@ -1,17 +1,21 @@
-import { html, render } from 'htm/preact';
-
-import {Counter} from './components/counter';
+import { h, hydrate } from "preact";
+import {Counter} from './components/counter.js';
 
 const componentMap = {
   Counter,
 };
 
-const $componentMarkers = document.querySelectorAll(`[data-cmp-id]`);
+const $componentRoots = document.querySelectorAll(`[data-component]`);
 
-Array.from($componentMarkers).forEach(($marker) => {
-  const $component = $marker.nextElementSibling;
-  const { name, props } = window.__STATE__.components[$marker.dataset.cmpId];
+Array.from($componentRoots).forEach($root => {
+  const $script = $root.querySelector('script[type="text/hydration"]');
+  const data = ($script && JSON.parse($script.textContent)) || {};
+
+  const name = $root.getAttribute("data-component");
   const Component = componentMap[name];
 
-  render(html`<${Component} ...${props}/>`, $component.parentNode, $component);
+  hydrate(
+    h(Component, data.props), // equiv: html`<${Component} ...${props} />`
+    $root
+  );
 });
