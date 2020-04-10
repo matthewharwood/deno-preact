@@ -7,6 +7,7 @@ import {HydrateCounter} from '../components/counter.js';
 export const Home = () => {
   return html`
       <${HydrateCounter} />
+      <${HydrateCounter} />
       <${HydrateCounter} />  
   `;
 };

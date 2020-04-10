@@ -13,7 +13,7 @@ export const Counter = ({id}) => {
 
   return html `
       <div>HOW MANY LIKES ${likes}</div>
-      <button onClick=${handleClick}>Increment</button>
+      <button onClick=${handleClick}>Incrementz</button>
   `;
 };
 export const HydrateCounter = withHydration(Counter);

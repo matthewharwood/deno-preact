@@ -12,7 +12,7 @@ export const withHydration = (Component) =>
     const scriptSrc = JSON.stringify({"props": props});
 
     return html`
-    <div data-component="Counter">
+    <div data-component="${Component.name}">
         <${Component} ...${props} />
         ${isServer && html`<script dangerouslySetInnerHTML=${{ __html: scriptSrc }} type="text/hydration"></script>`}
     </div>
