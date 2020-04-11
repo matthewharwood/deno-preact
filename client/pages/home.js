@@ -2,7 +2,7 @@ import htm from 'htm'
 import { h } from "preact";
 const html = htm.bind(h);
 
-import {AH} from '../components/h-components.js';
+import {AH} from '../components/component-map.js';
 
 export const Home = () => {
   return html`
