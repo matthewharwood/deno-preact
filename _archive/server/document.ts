@@ -30,7 +30,7 @@ export const Document = ({ title, content }: any) => {
         <main>
           ${content}
         </main>
-        <script type="module" src="deno-preact.module.js"></script>
+        <script type="module" src="deno-preact.module.js" defer></script>
       </body>
     </html>`;
 };

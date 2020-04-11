@@ -2,7 +2,7 @@ import htm from 'htm'
 import { h } from "preact";
 const html = htm.bind(h);
 import { useState } from "preact/hooks";
-import {withHydration} from '../with-hydration.js';
+
 
 export const Counter = ({id}) => {
   const [likes, setLikes] = useState(0);
@@ -16,4 +16,3 @@ export const Counter = ({id}) => {
       <button onClick=${handleClick}>Incrementz</button>
   `;
 };
-export const HydrateCounter = withHydration(Counter);

@@ -2,12 +2,12 @@ import htm from 'htm'
 import { h } from "preact";
 const html = htm.bind(h);
 
-import {HydrateCounter} from '../components/counter.js';
+import {AH} from '../components/h-components.js';
 
 export const Home = () => {
   return html`
-      <${HydrateCounter} />
-      <${HydrateCounter} />
-      <${HydrateCounter} />  
+      <${AH.Counter} />
+      <${AH.Counter} />
+      <${AH.Counter} />  
   `;
 };
