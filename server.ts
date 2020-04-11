@@ -12,7 +12,7 @@ const app = new Application();
 
 // Error handler middleware
 app.use(async (context, next) => {
-    console.log(context.request, `${Deno.cwd()}/dist`);
+    console.log(`${Deno.cwd()}/dist`);
     try {
         await next();
     } catch (e) {

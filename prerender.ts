@@ -5,7 +5,7 @@ import {
 
 import { Home } from "./client/pages/home.js";
 import { html } from "htm/preact";
-import { RenderDocument } from "./_archive/server/document.ts";
+import { RenderDocument } from "./server/document.ts";
 
 const content = RenderDocument("Home Page", html `<${Home} />`);
 

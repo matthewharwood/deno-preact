@@ -28,7 +28,7 @@ npm i && deno --allow-run --allow-read main.ts
 npm run build
 
 #### Prerender HTML
-deno --allow-write --allow-read --importmap=imports.json prerender.ts
+deno --allow-write --allow-read --importmap=imports.json ./server/prerender.ts
 
 #### Server Dist:
 deno --allow-net --allow-read --importmap=imports.json server.ts

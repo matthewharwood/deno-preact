@@ -1,4 +1,5 @@
 import { h, hydrate } from "preact";
+import {AH} from './components/component-map.js';
 
 class ComponentRoot extends HTMLElement {
   connectedCallback() {
@@ -20,7 +21,7 @@ class ComponentRoot extends HTMLElement {
     }
 
     const name = this.getAttribute("name");
-    const Component = componentMap[name];
+    const Component = AH[name];
 
     // We provide Preact a fake root DOM element.
     // This is how we avoid hydrate() "picking" the wrong children.
@@ -30,7 +31,7 @@ class ComponentRoot extends HTMLElement {
       // appendChild() is shown here for completeness' sake.
       appendChild(c) {
         // note: $end can be null, acts like appendChild
-        this.parentNode.insertBefore(c, $end);
+        this.insertBefore(c, $end);
       }
     };
 
