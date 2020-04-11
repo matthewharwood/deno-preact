@@ -1,14 +1,18 @@
 # What This is:
-This is a working example of a SSG with partial hydration.
+This is a working example of a SSG with partial hydration aka ⚡🧩💦.
 
 
 # Why
-- https://twitter.com/jaffathecake/status/1230388412806520833
+
 > The server and client render should not be 1:1.
 > Don't render buttons on the server that require JS to work.
 > Don't ship code to the client that simply repeats what the server has already done
+- https://twitter.com/jaffathecake/status/1230388412806520833
 
-- https://adactio.com/journal/16404
+# Inspired by:
+https://markus.oberlehner.net/blog/building-partially-hydrated-progressively-enhanced-static-websites-with-isomorphic-preact-and-eleventy/#demo-and-full-code
+
+
 
 # How
 ## Prerequisite
