@@ -1,7 +1,14 @@
 import { h, hydrate } from "preact";
 import {AH} from './components/component-map.js';
 
-class ComponentRoot extends HTMLElement {
+
+function ComponentRoot() {
+  return Reflect.construct(HTMLElement, [], ComponentRoot);
+}
+
+ComponentRoot.prototype = Object.create(HTMLElement.prototype);
+
+Object.assign(ComponentRoot.prototype, {
   connectedCallback() {
     const childNodes = [];
     let $end = this;
@@ -31,20 +38,16 @@ class ComponentRoot extends HTMLElement {
       // appendChild() is shown here for completeness' sake.
       appendChild(c) {
         // note: $end can be null, acts like appendChild
-        this.insertBefore(c, $end);
+        this.parentNode.insertBefore(c, $end);
       }
     };
 
     hydrate(h(Component, data.props), this.root);
-  }
+  },
 
   disconnectedCallback() {
     render(null, this.root);
   }
-}
+});
 
-customElements.define(
-  "component-root",
-  ComponentRoot,
-);
-
+customElements.define("component-root", ComponentRoot);

@@ -17,7 +17,7 @@ https://markus.oberlehner.net/blog/building-partially-hydrated-progressively-enh
 # How
 ## Prerequisite
 node v10+ (until deno has a proper bundler)
-neno: (brew install deno)
+deno: (brew install deno)
 
 ## Bootstrap and Run All - Watch
 npm i && deno --allow-run --allow-read main.ts

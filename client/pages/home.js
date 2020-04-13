@@ -6,8 +6,10 @@ import {AH} from '../components/component-map.js';
 
 export const Home = () => {
   return html`
-      <${AH.Counter} />
-      <${AH.Counter} />
-      <${AH.Counter} />  
+    <h3>First Counter</h3>
+    <${AH.Counter} />
+
+    <h3>Second Counter</h3>
+    <${AH.Counter} initialValue=${10} />
   `;
 };
