@@ -10,21 +10,7 @@ export const Document = ({ title, content }: any) => {
         <title>${title}</title>
         <meta name="description" content="SSR Demo" />
         <meta name="author" content="Tim Arney" />
-        <style>
-        body {
-          font-family: Helvetica, Arial, Sans-Serif;
-          font-size:1.2em;
-          margin:20px;
-        }
-        a{
-          color:#000;
-          display:inline-block;
-          margin-right:20px;
-        }
-        a:hover{
-          color:#888;
-        }
-        </style>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
       </head>
       <body>
         <main>

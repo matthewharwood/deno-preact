@@ -7,7 +7,6 @@ async function build() {
    await Deno.run({
         cmd: ["npm", "run", "build"]
    });
-
 }
 await build();
 Deno.run({
