@@ -1,6 +1,6 @@
 import {html, h} from '../components/preact.js';
 import {AH} from '../components/component-map.js';
-import {Navigation, NavigationItem} from '../components/navigation/mod.js';
+import {Navigation} from '../components/navigation/mod.js';
 
 const navigationLinks = [
   {className: 'wow', link: {text: 'Work', ariaLabel:'Work', href:'https://www.morningharwood.com/work'}},
@@ -10,8 +10,12 @@ const navigationLinks = [
 
 export const Home = () => {
   return html`
-    <${Navigation}>
-      ${navigationLinks.map((nl, index)=> html`<${NavigationItem} className="${nl.className}" link="${nl.link}" index="${index}"/>`)}
-    <//>
+    <div class="grid grid-rows-3 grid-cols-4 gap-4 h-screen">
+      <div class="col-start-4 row-end-4">
+        <${Navigation}>
+          ${navigationLinks.map((nl, index)=> html`<${AH.NavigationItem} className="${nl.className}" link="${nl.link}" index="${index}"/>`)}
+        <//>
+      </div>
+    </div>
   `;
 };

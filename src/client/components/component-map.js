@@ -1,5 +1,6 @@
 import {html} from './preact.js';
 import {Counter} from './counter.js';
+import {NavigationItem} from './navigation/mod.js';
 
 function autoHydrate(Component, name) {
   if (typeof document !== 'undefined') {
@@ -20,6 +21,7 @@ function autoHydrate(Component, name) {
 
 const COMPONENT_MAP = {
   Counter,
+  NavigationItem,
 }
 
 const AH = {};
