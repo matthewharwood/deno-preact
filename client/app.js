@@ -36,7 +36,7 @@ Object.assign(ComponentRoot.prototype, {
       childNodes,
       // In correct setups, only childNodes is required,
       // appendChild() is shown here for completeness' sake.
-      appendChild(c) {
+      appendChild: c => {
         // note: $end can be null, acts like appendChild
         this.parentNode.insertBefore(c, $end);
       }
