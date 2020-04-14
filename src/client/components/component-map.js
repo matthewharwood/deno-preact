@@ -1,9 +1,10 @@
 import {html} from './preact.js';
 import {Counter} from './counter.js';
 import {NavigationItem} from './navigation/mod.js';
+import {isClient} from '../../utils/which_env.js';
 
 function autoHydrate(Component, name) {
-  if (typeof document !== 'undefined') {
+  if (isClient) {
     return Component;
   }
 

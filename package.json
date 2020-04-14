@@ -7,6 +7,9 @@
     "build": "microbundle src/client/app.js  -f modern --external none",
     "dev": "microbundle watch"
   },
+  "mangle": {
+    "regex": "^_"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matthewharwood/deno-preact.git"
