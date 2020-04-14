@@ -10,8 +10,8 @@ const navigationLinks = [
 
 export const Home = () => {
   return html`
-    <div class="grid grid-rows-3 grid-cols-4 gap-4 h-screen">
-      <div class="col-start-4 row-end-4">
+    <div class="grid grid-rows-2 grid-cols-4 gap-4 h-screen">
+      <div class="col-start-4 row-end-3">
         <${Navigation}>
           ${navigationLinks.map((nl, index)=> html`<${AH.NavigationItem} className="${nl.className}" link="${nl.link}" index="${index}"/>`)}
         <//>
