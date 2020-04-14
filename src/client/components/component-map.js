@@ -1,6 +1,4 @@
-import htm from 'htm';
-import { h } from "preact";
-const html = htm.bind(h);
+import {html} from './preact.js';
 
 import {Counter} from './counter.js';
 

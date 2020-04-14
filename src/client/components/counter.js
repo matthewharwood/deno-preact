@@ -1,8 +1,5 @@
-import htm from 'htm'
-import { h } from "preact";
-const html = htm.bind(h);
+import {html} from './preact.js';
 import { useState, useEffect } from "preact/hooks";
-
 
 export const Counter = ({ initialValue }) => {
   const [likes, setLikes] = useState(initialValue || 0);
