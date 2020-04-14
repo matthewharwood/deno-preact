@@ -5,6 +5,11 @@ const html = htm.bind(h);
 import {Counter} from './counter.js';
 
 function autoHydrate(Component, name) {
+  // on the client, bypass all of this:
+  if (typeof document !== 'undefined') {
+    return Component;
+  }
+
   return props => html`
     <component-root name=${name} />
     <${Component} ...${props} />
