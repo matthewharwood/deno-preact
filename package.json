@@ -10,6 +10,13 @@
   "mangle": {
     "regex": "^_"
   },
+  "babel": {
+    "plugins": [
+      ["babel-plugin-htm", {
+        "import": "preact"
+      }]
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matthewharwood/deno-preact.git"
@@ -26,6 +33,7 @@
     "preact": "^10.4.0"
   },
   "devDependencies": {
+    "babel-plugin-htm": "^3.0.0",
     "microbundle": "^0.12.0-next.8"
   }
 }

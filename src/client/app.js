@@ -1,5 +1,6 @@
 import { h, hydrate, render } from "preact";
 import {AH} from './components/component-map';
+import {whenVisible} from '../utils/when_visible';
 
 class ComponentRoot extends HTMLElement {
   constructor() {
@@ -9,30 +10,28 @@ class ComponentRoot extends HTMLElement {
     const childNodes = [];
     let $end = this;
     let data = {};
-    while (($end = $end.nextSibling)) {
-      if (
-        $end.nodeName === "SCRIPT" &&
-        $end.getAttribute("type") === "text/hydration"
-      ) {
-        try {
-          data = JSON.parse($end.textContent) || {};
-        } catch (e) {}
-        break;
+
+    whenVisible(this, () => {
+      while (($end = $end.nextSibling)) {
+        if (
+          $end.nodeName === "SCRIPT" &&
+          $end.getAttribute("type") === "text/hydration"
+        ) {
+          try {
+            data = JSON.parse($end.textContent) || {};
+          } catch (e) {}
+          break;
+        }
+        childNodes.push($end);
       }
-      childNodes.push($end);
-    }
 
-    const name = this.getAttribute("name");
-    const Component = AH[name];
-
-    this.root = {
-      childNodes,
-      appendChild: c => {
-        this.parentNode.insertBefore(c, $end);
-      }
-    };
-
-    hydrate(h(Component, data.props), this.root);
+      this.root = {
+        childNodes,
+        appendChild: c => this.parentNode.insertBefore(c, $end)
+      };
+      const Component = AH[this.getAttribute("name")];
+      hydrate(h(Component, data.props), this.root);
+    });
   }
 
   disconnectedCallback() {
