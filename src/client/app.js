@@ -1,19 +1,14 @@
-import { h, hydrate } from "preact";
-import {AH} from './components/component-map.js';
+import { h, hydrate, render } from "preact";
+import {AH} from './components/component-map';
 
-
-function ComponentRoot() {
-  return Reflect.construct(HTMLElement, [], ComponentRoot);
-}
-
-ComponentRoot.prototype = Object.create(HTMLElement.prototype);
-
-Object.assign(ComponentRoot.prototype, {
+class ComponentRoot extends HTMLElement {
+  constructor() {
+    super();
+  }
   connectedCallback() {
     const childNodes = [];
     let $end = this;
     let data = {};
-    // eslint-disable-next-line
     while (($end = $end.nextSibling)) {
       if (
         $end.nodeName === "SCRIPT" &&
@@ -30,24 +25,19 @@ Object.assign(ComponentRoot.prototype, {
     const name = this.getAttribute("name");
     const Component = AH[name];
 
-    // We provide Preact a fake root DOM element.
-    // This is how we avoid hydrate() "picking" the wrong children.
     this.root = {
       childNodes,
-      // In correct setups, only childNodes is required,
-      // appendChild() is shown here for completeness' sake.
       appendChild: c => {
-        // note: $end can be null, acts like appendChild
         this.parentNode.insertBefore(c, $end);
       }
     };
 
     hydrate(h(Component, data.props), this.root);
-  },
+  }
 
   disconnectedCallback() {
     render(null, this.root);
   }
-});
+}
 
 customElements.define("component-root", ComponentRoot);

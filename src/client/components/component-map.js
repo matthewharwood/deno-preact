@@ -1,5 +1,4 @@
 import {html} from './preact.js';
-
 import {Counter} from './counter.js';
 
 function autoHydrate(Component, name) {
