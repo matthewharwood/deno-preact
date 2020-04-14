@@ -1,8 +1,8 @@
-const iter = Deno.fsEvents(Deno.cwd() + "/client");
+const iter = Deno.fsEvents(Deno.cwd() + "/src/client");
 
 async function build() {
    await Deno.run({
-        cmd: ["deno", "--allow-write", "--allow-read", "--importmap=imports.json", "prerender.ts"]
+        cmd: ["deno", "--allow-write", "--allow-read", "--importmap=imports.json", "src/prerender.ts"]
    });
    await Deno.run({
         cmd: ["npm", "run", "build"]
@@ -11,7 +11,7 @@ async function build() {
 }
 await build();
 Deno.run({
-    cmd: ["deno", "--allow-net", "--allow-read", "--importmap=imports.json", "server.ts"]
+    cmd: ["deno", "--allow-net", "--allow-read", "--importmap=imports.json", "src/server/serve.ts"]
 });
 
 // TODO (mh) make debounce this event from building

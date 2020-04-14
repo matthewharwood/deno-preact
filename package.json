@@ -4,7 +4,7 @@
   "description": "Prerender deno --allow-net --allow-read=public --importmap=imports.json main.ts",
   "module": "dist/app.module.js",
   "scripts": {
-    "build": "microbundle client/app.js  -f modern --external none",
+    "build": "microbundle src/client/app.js  -f modern --external none",
     "dev": "microbundle watch"
   },
   "repository": {
