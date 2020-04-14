@@ -10,5 +10,5 @@ import { RenderDocument } from "./server/document.ts";
 const content = RenderDocument("Home Page", html `<${Home} />`);
 
 
-await ensureDir("./dist")
-writeFileStr("./dist/index.html", content);
+await ensureDir(`${Deno.cwd()}/dist`)
+writeFileStr(`${Deno.cwd()}/dist/index.html`, content);

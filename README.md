@@ -20,18 +20,18 @@ node v10+ (until deno has a proper bundler)
 deno: (brew install deno)
 
 ## Bootstrap and Run All - Watch
-npm i && deno --allow-run --allow-read main.ts
+`npm i && deno --allow-run --allow-read src/main.ts`
 
 
 ### Or run commands independent.
 #### Bundle frontend.
-npm run build
+`npm run build`
 
 #### Prerender HTML
-deno --allow-write --allow-read --importmap=imports.json ./server/prerender.ts
+`deno --allow-write --allow-read --importmap=imports.json ./src/prerender.ts`
 
 #### Server Dist:
-deno --allow-net --allow-read --importmap=imports.json server.ts
+deno --allow-net --allow-read --importmap=imports.json ./src/server/serve.ts
 
 #### Prerender & Bundle  & Serve:
 deno --allow-write --allow-read  --importmap=imports.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=imports.json server.ts
