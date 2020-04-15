@@ -1,5 +1,6 @@
 import {html} from '../preact.js';
 import {useRef, useEffect} from 'preact/hooks';
+import {turbo} from '../turbo.js';
 
 export const NavigationItem = ({link, className, index}) => {
   const anime = useRef(null);
@@ -23,34 +24,13 @@ export const NavigationItem = ({link, className, index}) => {
     }
   });
 
-  const go = (e) => {
-    // if(e.origin === location.origin) return;
-    e.preventDefault();
-    console.log('Yooo', link.href);
-    const outlet = document.querySelector('#primary');
-    let prev;
-    fetch(link.href).then(r => r.text()).then(t => {
-      const doc = new DOMParser().parseFromString(t, 'text/html');
-      prev = doc.querySelector('main').innerHTML;
-
-      outlet.innerHTML = doc.querySelector('main').innerHTML;
-      history.pushState(prev, '' , 'about' )
-    }).catch(console.error);
-
-
-    addEventListener('popstate', () => {
-      // go(location.href);
-      console.log(prev);
-      outlet.innerHTML = null;
-    });
-  }
 
   return html`
     <a 
       className="hover:text-red-500 font-serif hover:border-red-500"
       aria-label="${link.ariaLabel}"
       href="${link.href}"
-      onClick="${go}">
+      onClick="${turbo(link, 'main', '#primary')}">
       <div className="relative text-right border-0 border-black hover:border-red-500 border-b py-8 overflow-hidden">
         <div>
           <span ref="${anime}" className="block text-5xl text-right leading-none mr-16">${link.text}</span>

@@ -1,52 +1,19 @@
-// import { createPortal } from "preact/compat";
-// import {useEffect} from 'preact/hooks';
-import {html} from './preact.js';
+export const turbo = (link, templateEntrySelector, outletSelector) => (e) => {
+  // if(e.origin === location.origin) return;
+  e.preventDefault();
 
-export const Turbo = ({link, outlet = 'primary', children, ...props} ) => {
-  const {text, href, ariaLabel} = link;
-  const out = document.getElementById(outlet);
+  const outlet = document.querySelector(outletSelector);
 
-  // useEffect(() => {
-  //
-  // });
-  const go = (e) => {
-    // if(e.origin === location.origin) return;
-    e.preventDefault();
-    console.log('Yooo', link.url);
-    fetch(link.url).then(r => r.text()).then(console.log).catch(console.error);
-  }
 
-  return html`
-    <a ...${props}
-        aria-label="${ariaLabel}"
-        onClick="${go}"
-        href="${href}">
-        ${children}
-    </a>
-  `
+  fetch(link.href).then(r => r.text()).then(t => {
+    const doc = new DOMParser().parseFromString(t, 'text/html');
+    const statePath = link.href.split('http://localhost:8000/')[1].split('index.html')[0];
+    outlet.innerHTML = doc.querySelector(templateEntrySelector).innerHTML;
+    history.pushState(null, null , statePath);
+  }).catch(console.error);
+
+
+  addEventListener('popstate', () => {
+    outlet.innerHTML = '';
+  });
 }
-// addEventListener('click', e => {
-//   let a = e.target;
-//   while (a.localName !== 'a' && (a = a.parentNode));
-//   if (a && a.origin==location.origin && !a.target) {
-//     e.preventDefault();
-//     go(a.href);
-//   }
-// });
-// let c = 0;
-// function go(url) {
-//   const id = ++c;
-//   fetch(url).then(r=>r.text()).then(html => {
-//     const doc = new DOMParser().parseFromString(html, 'text/html');
-//     if (c!==id) return;
-//     document.body.innerHTML = doc.body.innerHTML;
-//   });
-// }
-// const ps = history.pushState;
-// history.pushState = (a,b,url) => {
-//   ps.call(history, a, b, url);
-//   go(url);
-// };
-// addEventListener('popstate', () => {
-//   go(location.href);
-// });
