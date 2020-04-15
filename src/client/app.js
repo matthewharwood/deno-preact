@@ -40,3 +40,12 @@ class ComponentRoot extends HTMLElement {
 }
 
 customElements.define("component-root", ComponentRoot);
+
+
+
+const popstateId = addEventListener('popstate', () => {
+  fetch(location.href).then(r => r.text()).then(t => {
+    let doc = new DOMParser().parseFromString(t, 'text/html');
+    document.body.innerHTML = doc.body.innerHTML;
+  }).catch(console.error);
+})

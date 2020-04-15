@@ -21,6 +21,7 @@ const DIST_DIR = `${Deno.cwd()}/dist`;
 
 for await (const p of pages) {
     if(p.fileName === 'index') {
+
         await ensureDir(DIST_DIR);
         await writeFileStr(`${DIST_DIR}/index.html`, p.content);
     } else {
