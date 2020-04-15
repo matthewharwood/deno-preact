@@ -25,7 +25,7 @@ export const NavigationItem = ({link, className, index}) => {
     let doc;
     const mouseEnterId = turboRef.current.addEventListener("mouseenter", () => {
       if(!doc) {
-        fetch(link.href).then(r => r.text()).then(t => {
+        fetch(link.href, {cache: "force-cache"}).then(r => r.text()).then(t => {
           doc = new DOMParser().parseFromString(t, 'text/html');
         }).catch(console.error);
       }
