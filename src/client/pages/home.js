@@ -1,11 +1,12 @@
 import {html, h} from '../components/preact.js';
 import {AH} from '../components/component-map.js';
 import {Navigation} from '../components/navigation/mod.js';
+const __DOMAIN__ = 'http://localhost:8000';
 
 const navigationLinks = [
-  {className: 'wow', link: {text: 'Work', ariaLabel:'Work', href:'http://localhost:8000/work/index.html'}},
-  {className: 'wow', link: {text: 'Lab', ariaLabel:'Lab', href:'https://www.morningharwood.com/lab'}},
-  {className: 'wow', link: {text: 'Profile', ariaLabel:'Profile', href:'https://www.morningharwood.com/profile'}},
+  {className: 'wow', link: {text: 'Work', ariaLabel:'Work', href:`${__DOMAIN__}/work/index.html`}},
+  {className: 'wow', link: {text: 'Lab', ariaLabel:'Lab', href: `${__DOMAIN__}/lab`}},
+  {className: 'wow', link: {text: 'Profile', ariaLabel:'Profile', href: `${__DOMAIN__}/profile`}},
 ];
 
 export const Home = () => {

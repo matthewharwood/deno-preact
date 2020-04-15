@@ -1,19 +1,32 @@
-export const turbo = (link, templateEntrySelector, outletSelector) => (e) => {
-  // if(e.origin === location.origin) return;
-  e.preventDefault();
+export const go = (doc, link, templateEntrySelector, outletEl) => {
+    const ROOT = 'http://localhost:8000/';
+    if(link && link.href && link.href.includes(ROOT)){
 
-  const outlet = document.querySelector(outletSelector);
+      const [, loc] = link.href.split('http://localhost:8000/');
+      const [path,] = loc.split('/index.html');
+      outletEl.innerHTML = doc.querySelector(templateEntrySelector).innerHTML;
+      history.pushState(null, null , path)
+    } else {
+      outletEl.innerHTML = "";
+      history.pushState(null, null , ROOT);
+    }
 
 
-  fetch(link.href).then(r => r.text()).then(t => {
-    const doc = new DOMParser().parseFromString(t, 'text/html');
-    const statePath = link.href.split('http://localhost:8000/')[1].split('index.html')[0];
-    outlet.innerHTML = doc.querySelector(templateEntrySelector).innerHTML;
-    history.pushState(null, null , statePath);
-  }).catch(console.error);
 
-
-  addEventListener('popstate', () => {
-    outlet.innerHTML = '';
-  });
 }
+
+// export const turbo = (link, templateEntrySelector, outletSelector) => {
+//   const outletEl = document.querySelector(outletSelector);
+//
+//   return [
+//     (e) => {
+//       e.preventDefault();
+//       if(link.href.split('/index.html')[0] === location.href) return;
+//       go(link, templateEntrySelector, outletEl);
+//     },
+//     () => (addEventListener('popstate', () => {
+//         go({link: location.href}, templateEntrySelector, outletEl);
+//       })
+//     )
+//   ];
+// }
