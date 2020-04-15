@@ -16,6 +16,7 @@ export const Document = ({ title, content }: any) => {
         <main>
           ${content}
         </main>
+        <div id="primary" class="fixed top-0 text-black"></div>
         <script type="module" src="deno-preact.modern.js" defer></script>
       </body>
     </html>`;

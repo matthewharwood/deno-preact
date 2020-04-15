@@ -48,3 +48,6 @@ To bundle client side: (must be on master as of April 7th)
 ../deno/target/debug/deno bundle --importmap=imports.json client/app.js dist/bundle.js
 1. deno bundler still isn't ready for primetime.
 2. until then we'll use microbundle to bundle our front end.
+3. Minify html
+4. Purgecss
+

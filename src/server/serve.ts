@@ -75,6 +75,6 @@ app.use(async (context) => {
     });
 });
 
-const address = "127.0.0.1:8000";
+const address = "localhost:8000";
 console.log(bold("Start listening on ") + yellow('http://' + address));
 await app.listen(address);
