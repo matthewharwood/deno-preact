@@ -50,4 +50,9 @@ To bundle client side: (must be on master as of April 7th)
 2. until then we'll use microbundle to bundle our front end.
 3. Minify html
 4. Purgecss
+5. device testing with refreshing?
+6. Make a SSR Framework like fusion using oak
+7. figure out DI by looking into fusion core.
+8. Have a monorepo command line like nx
+9. 
 
