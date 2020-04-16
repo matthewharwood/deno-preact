@@ -10,7 +10,8 @@ This is a working example of a SSG with partial(selective) hydration[⚡🧩💦
 - https://twitter.com/jaffathecake/status/1230388412806520833
 
 # Inspired by:
-https://markus.oberlehner.net/blog/building-partially-hydrated-progressively-enhanced-static-websites-with-isomorphic-preact-and-eleventy/#demo-and-full-code
+- https://markus.oberlehner.net/blog/building-partially-hydrated-progressively-enhanced-static-websites-with-isomorphic-preact-and-eleventy/#demo-and-full-code
+- https://developers.google.com/web/updates/2019/02/rendering-on-the-web
 
 ### More features
 - Lazy evaluate hydrated components with intersection observer
@@ -51,7 +52,8 @@ deno: (brew install deno)
 #### Prerender & Bundle  & Serve:
 `deno --allow-write --allow-read  --importmap=imports.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=imports.json server.ts`
 
-
+## HUGE THANKS
+- @developit
 
 
 
