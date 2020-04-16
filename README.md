@@ -1,5 +1,5 @@
 # What This is:
-This is a working example of a SSG with partial hydration aka ⚡🧩💦.
+This is a working example of a SSG with partial(selective) hydration[⚡🧩💦].
 
 
 # Why
@@ -12,7 +12,22 @@ This is a working example of a SSG with partial hydration aka ⚡🧩💦.
 # Inspired by:
 https://markus.oberlehner.net/blog/building-partially-hydrated-progressively-enhanced-static-websites-with-isomorphic-preact-and-eleventy/#demo-and-full-code
 
+### More features
+- Lazy evaluate hydrated components with intersection observer
+- Prefetch templates based on hover.
+- Portal Based router using TurboLink-esq appraoch (super ugly right now)
 
+
+### Coming soon
+- Build a unique component chunk and prerender each page with 
+- ServiceWorkers https://developers.google.com/web/updates/2019/02/rendering-on-the-web
+- Better folder structure with to prerender many apps (monorepo?)
+- Better AutoHydration Developer Experience
+- Full deno bundling.
+
+### Coming in the future
+- Replace Turbolinks with https://web.dev/hands-on-portals/
+- API for selective SSG or SSR https://nextjs.org/blog/next-9-3
 
 # How
 ## Prerequisite
@@ -31,10 +46,10 @@ deno: (brew install deno)
 `deno --allow-write --allow-read --importmap=imports.json ./src/prerender.ts`
 
 #### Server Dist:
-deno --allow-net --allow-read --importmap=imports.json ./src/server/serve.ts
+`deno --allow-net --allow-read --importmap=imports.json ./src/server/serve.ts`
 
 #### Prerender & Bundle  & Serve:
-deno --allow-write --allow-read  --importmap=imports.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=imports.json server.ts
+`deno --allow-write --allow-read  --importmap=imports.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=imports.json server.ts`
 
 
 
