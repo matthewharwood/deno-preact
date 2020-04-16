@@ -25,6 +25,7 @@ This is a working example of a SSG with partial(selective) hydration[⚡🧩💦
 - Better folder structure with to prerender many apps (monorepo?)
 - Better AutoHydration Developer Experience
 - Full deno bundling.
+- SEO mobile/Desktop SSR https://developers.google.com/web/updates/2019/02/rendering-on-the-web#trisomorphic
 
 ### Coming in the future
 - Replace Turbolinks with https://web.dev/hands-on-portals/
