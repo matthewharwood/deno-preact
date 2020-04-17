@@ -17,6 +17,7 @@ This is a working example of a SSG with partial(selective) hydration[⚡🧩💦
 - Lazy evaluate hydrated components with intersection observer
 - Prefetch templates based on hover.
 - Portal Based router using TurboLink-esq appraoch (super ugly right now)
+- Host on render.com and get free brotli compression
 
 
 ### Coming soon
@@ -72,5 +73,5 @@ To bundle client side: (must be on master as of April 7th)
 6. Make a SSR Framework like fusion using oak
 7. figure out DI by looking into fusion core.
 8. Have a monorepo command line like nx
-9. 
+9. What is http3?
 
