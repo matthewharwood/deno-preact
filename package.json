@@ -12,9 +12,12 @@
   },
   "babel": {
     "plugins": [
-      ["babel-plugin-htm", {
-        "import": "preact"
-      }]
+      [
+        "babel-plugin-htm",
+        {
+          "import": "preact"
+        }
+      ]
     ]
   },
   "repository": {

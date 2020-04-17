@@ -1,5 +1,6 @@
 import {html} from './preact.js';
 import {NavigationItem} from './navigation/mod.js';
+import {RunningHeader} from './running_header/running_header.js';
 import {isClient} from '../../utils/which_env.js';
 
 function autoHydrate(Component, name) {
@@ -21,6 +22,7 @@ function autoHydrate(Component, name) {
 
 const COMPONENT_MAP = {
   NavigationItem,
+  RunningHeader,
 }
 
 const AH = {};

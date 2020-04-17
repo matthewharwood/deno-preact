@@ -1,6 +1,7 @@
 import {
     ensureDir,
     writeFileStr,
+    copy,
 } from "https://deno.land/std/fs/mod.ts";
 
 import { Home } from "./client/pages/home.js";
@@ -18,11 +19,13 @@ const pages =[
 ];
 
 const DIST_DIR = `${Deno.cwd()}/dist`;
+const SRC_DIR = `${Deno.cwd()}/src`;
+const STATIC = `${SRC_DIR}/static`;
+await ensureDir(DIST_DIR);
+await copy(STATIC, `${DIST_DIR}/static`, {overwrite: true});
 
 for await (const p of pages) {
     if(p.fileName === 'index') {
-
-        await ensureDir(DIST_DIR);
         await writeFileStr(`${DIST_DIR}/index.html`, p.content);
     } else {
         const deepDistDir = `${DIST_DIR}/${p.fileName}`;
