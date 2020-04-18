@@ -18,22 +18,25 @@ const flyIn = () => {
   );
 }
 
-const useTurbo = (link, from = 'main', into = 'main') => {
+const useTurbo = (link) => {
   if(typeof document === 'undefined') return;
   const turboRef = useRef(null);
   const intoEl = document.querySelector('#next');
+
   useEffect(() => {
     let doc;
     const path = link.href.split(DOMAIN)[1].split('/index.html')[0];
     const hasLink = link && link.href && link.href.includes(DOMAIN);
     const mouseEnterId = turboRef.current.addEventListener("mouseenter", () => {
       if(!doc) {
-        fetch(link.href, {cache: "force-cache"}).then(r => r.text()).then(t => {
+        fetch(link.href ).then(r => r.text()).then(t => {
           return new DOMParser().parseFromString(t, 'text/html');
         }).then(d => {
           if(link.href.split('/index.html')[0] === location.href) return;
           if(hasLink){
-            intoEl.innerHTML = d.querySelector(from).innerHTML;
+            console.log(d);
+            const start = d.querySelector('main')
+            intoEl.innerHTML = start.innerHTML;
           } else {
             intoEl.innerHTML = "";
           }
@@ -55,7 +58,7 @@ const useTurbo = (link, from = 'main', into = 'main') => {
       removeEventListener("click", clickId);
       removeEventListener("mouseenter", mouseEnterId);
     }
-  }, [link, from, into]);
+  }, [link]);
   return turboRef;
 }
 export {

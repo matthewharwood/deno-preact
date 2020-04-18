@@ -34,9 +34,10 @@ class ComponentRoot extends HTMLElement {
     });
   }
 
-  disconnectedCallback() {
-    render(null, this.root);
-  }
+  // disconnectedCallback() {
+  //   console.log('runningggin');
+  //   render(null, this.root);
+  // }
 }
 
 customElements.define("component-root", ComponentRoot);
