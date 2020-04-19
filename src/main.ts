@@ -1,16 +1,18 @@
 const iter = Deno.fsEvents(Deno.cwd() + "/src/client");
 
 async function build() {
-   await Deno.run({
-        cmd: ["deno", "--allow-write", "--allow-read", "--importmap=imports.json", "src/prerender.ts"]
-   });
-   await Deno.run({
-        cmd: ["npm", "run", "build"]
-   });
+  await Deno.run({
+    cmd: ["deno", "--allow-write", "--allow-read", "--importmap=import_map.json", "src/prerender.ts"]
+  });
+  if(Deno.build.os !== "win") {
+    await Deno.run({
+      cmd: ["npm", "run", "build"]
+    });
+  }
 }
 await build();
 Deno.run({
-    cmd: ["deno", "--allow-net", "--allow-read", "--importmap=imports.json", "src/server/serve.ts"]
+    cmd: ["deno", "--allow-net", "--allow-read", "--importmap=import_map.json", "src/server/serve.ts"]
 });
 // Clever ways to refresh a chrome browser using deno?
 // Listen https://chromedevtools.github.io/devtools-protocol/1-2/Page/#method-reload

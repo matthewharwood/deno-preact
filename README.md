@@ -46,13 +46,13 @@ deno: (brew install deno)
 `npm run build`
 
 #### Prerender HTML
-`deno --allow-write --allow-read --importmap=imports.json ./src/prerender.ts`
+`deno --allow-write --allow-read --importmap=import_map.json ./src/prerender.ts`
 
 #### Server Dist:
-`deno --allow-net --allow-read --importmap=imports.json src/server/serve.ts"`
+`deno --allow-net --allow-read --importmap=import_map.json src/server/serve.ts"`
 
 #### Prerender & Bundle  & Serve:
-`deno --allow-write --allow-read  --importmap=imports.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=imports.json server.ts`
+`deno --allow-write --allow-read  --importmap=import_map.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=import_map.json server.ts`
 
 ## HUGE THANKS
 - @developit
@@ -64,7 +64,7 @@ deno: (brew install deno)
 ## TODO
 
 To bundle client side: (must be on master as of April 7th)
-../deno/target/debug/deno bundle --importmap=imports.json client/app.js dist/bundle.js
+../deno/target/debug/deno bundle --importmap=import_map.json client/app.js dist/bundle.js
 1. deno bundler still isn't ready for primetime.
 2. until then we'll use microbundle to bundle our front end.
 3. Minify html
