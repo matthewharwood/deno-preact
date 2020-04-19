@@ -1,12 +1,22 @@
 import {html} from '../components/preact.js';
-import {PageNavigation} from '../components/page_navigation/page_navigation.js';
-import {useStatic} from '../components/hooks/use_cloudinary.js';
+import {LabCard} from '../components/card/lab_card.js';
 
 export const Lab = () => {
-  const src = useStatic('sample.jpg', 'w_200');
   return html`
-    <div>
-        <img src="${src}" alt="">
+    <div class="flex flex-wrap m-auto p-2 bg-gray-200 h-screen">
+
+      <div class=" px-3 w-1/3">
+        <${LabCard} />
+      </div>
+           
+      <div class="px-3 w-1/3">
+        <${LabCard} />
+      </div>
+      
+      <div class="px-3 w-1/3">
+        <${LabCard} />
+      </div> 
+
     </div>
   `;
 };
