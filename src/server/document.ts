@@ -15,6 +15,15 @@ export const Document = ({ title, content }: any) => {
         .sans {
             font-family: sans-serif;
         }
+        .center {
+          transform: translate3d(50vw, 50vh, 0);
+        }
+        .navigation-start {
+          transform: translate3d(0, 175%, 0);
+        }
+        .boner-shadow {
+          box-shadow: -14px -2px 24px rgba(255, 255, 255, 0.75), 12px 12px 12px rgba(170, 170, 170, 0.25);
+        }
         .text-accent {
             color: #001AFF;
         }

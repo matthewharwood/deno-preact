@@ -2,6 +2,7 @@ import {html} from './preact.js';
 import {NavigationItem} from './navigation/mod.js';
 import {RunningHeader} from './running_header/running_header.js';
 import {Boner} from './boner/boner.js';
+import {Marquee} from './boner/marquee.js';
 import {isClient} from '../../utils/which_env.js';
 
 function autoHydrate(Component, name) {
@@ -23,6 +24,7 @@ function autoHydrate(Component, name) {
 
 const COMPONENT_MAP = {
   NavigationItem,
+  Marquee,
   RunningHeader,
   Boner,
 }

@@ -13,8 +13,9 @@ const useFlyIn = (delay, startPos=[0, '175%', 0]) => {
       keyframe,
       {
         easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-        duration: 250,
-        delay: (delay * (250/4))
+        duration: 450,
+        delay: (delay * (250/4)),
+        fill: 'forwards'
       }
     );
   }, []);
