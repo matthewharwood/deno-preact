@@ -1,70 +1,68 @@
-import {useEffect, useRef} from 'preact/hooks';
-import {DOMAIN} from '../../../utils/env.js';
-const flyIn = () => {
-  if(typeof document === 'undefined') return;
-  const intoEl = document.querySelector('#next');
+import { useEffect, useRef } from "preact/hooks";
+import { DOMAIN } from "../../../utils/env.js";
+const flyIn = (intoEl) => {
+  if (typeof document === "undefined") return;
   const keyframe = [
-    { transform: `translate3D(100%, 0, 0)`},
-    { transform: 'translate3D(0, 0, 0)'}
+    { transform: `translate3D(100%, 0, 0)` },
+    { transform: "translate3D(0, 0, 0)" },
   ];
 
   intoEl.animate(
     keyframe,
     {
-      easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+      easing: "cubic-bezier(0.4, 0.0, 0.2, 1)",
       duration: 350,
-      fill: 'forwards'
-    }
+      fill: "forwards",
+    },
   );
-}
+};
 
 const useTurbo = (link) => {
-  if(typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
   const turboRef = useRef(null);
-  const intoEl = document.querySelector('#next');
+  const intoEl = document.querySelector('#' + link.text.toLowerCase());
 
+  let doc;
   useEffect(() => {
-    let doc;
-    const path = link.href.split(DOMAIN)[1].split('/index.html')[0];
+    const path = link.href.split(DOMAIN)[1].split("/index.html")[0];
     const hasLink = link && link.href && link.href.includes(DOMAIN);
     const mouseEnterId = turboRef.current.addEventListener("mouseenter", () => {
-      if(!doc) {
-        fetch(link.href ).then(r => r.text()).then(t => {
-          return new DOMParser().parseFromString(t, 'text/html');
-        }).then(d => {
-          if(link.href.split('/index.html')[0] === location.href) return;
-          if(hasLink){
-            console.log(d);
-            const start = d.querySelector('main')
+        fetch(link.href).then((r) => r.text()).then((t) => {
+
+          return new DOMParser().parseFromString(t, "text/html");
+        }).then((d) => {
+          if (link.href.split("/index.html")[0] === location.href) return;
+          if (hasLink) {
+            const start = d.querySelector("main");
             intoEl.innerHTML = start.innerHTML;
           } else {
             intoEl.innerHTML = "";
           }
-        }) .catch(console.error);
-      }
+        }).catch(console.error);
     });
 
-    const clickId = turboRef.current.addEventListener('click', (e) => {
+    const clickId = turboRef.current.addEventListener("click", (e) => {
       e.preventDefault();
-      if(hasLink) {
-        flyIn(intoEl)
-        history.pushState(null, null , path);
+      const t = '#' + e.target.textContent.toLowerCase();
+      const intoEl = document.querySelector(t);
+      if (hasLink) {
+        flyIn(intoEl);
+        history.pushState(null, null, path);
       } else {
-        history.pushState(null, null , DOMAIN);
+        history.pushState(null, null, DOMAIN);
       }
     });
 
     return () => {
       removeEventListener("click", clickId);
       removeEventListener("mouseenter", mouseEnterId);
-    }
+    };
   }, [link]);
   return turboRef;
-}
+};
 export {
-   useTurbo
-}
-
+  useTurbo
+};
 
 /*
 # https://observablehq.com/@observablehq/introduction-to-asynchronous-iteration
