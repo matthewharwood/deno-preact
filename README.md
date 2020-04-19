@@ -49,7 +49,7 @@ deno: (brew install deno)
 `deno --allow-write --allow-read --importmap=imports.json ./src/prerender.ts`
 
 #### Server Dist:
-`deno --allow-net --allow-read --importmap=imports.json ./src/server/serve.ts`
+`   `
 
 #### Prerender & Bundle  & Serve:
 `deno --allow-write --allow-read  --importmap=imports.json prerender.ts && npm run build && deno --allow-net --allow-read --importmap=imports.json server.ts`
