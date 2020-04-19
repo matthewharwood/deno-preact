@@ -1,8 +1,8 @@
-import {useEffect, useRef} from 'preact/hooks';
+import {useLayoutEffect, useRef} from 'preact/hooks';
 
 const useFlyIn = (delay, startPos=[0, '175%', 0]) => {
   const ref = useRef(null);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if(typeof document === 'undefined') return;
     const keyframe = [
       { transform: `translate3D(${startPos.join(',')})`, opacity: 0},
