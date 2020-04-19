@@ -27,6 +27,7 @@ const useTurbo = (link) => {
     const path = link.href.split(DOMAIN)[1].split("/index.html")[0];
     const hasLink = link && link.href && link.href.includes(DOMAIN);
     const mouseEnterId = turboRef.current.addEventListener("mouseenter", () => {
+      if(doc) {
         fetch(link.href).then((r) => r.text()).then((t) => {
 
           return new DOMParser().parseFromString(t, "text/html");
@@ -39,6 +40,7 @@ const useTurbo = (link) => {
             intoEl.innerHTML = "";
           }
         }).catch(console.error);
+      }
     });
 
     const clickId = turboRef.current.addEventListener("click", (e) => {
