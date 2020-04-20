@@ -7,7 +7,7 @@ export const Lab = () => {
       <a class=" w-full">
         <h1 class="text-6xl">Lab</h1>
       </a>
-      <a class="px-3 w-1/3">
+      <a class="px-3 w-1/3" href="${'http://localhost:8000/lab/rorschach'}">
         <${LabCard} />
       </a>
 

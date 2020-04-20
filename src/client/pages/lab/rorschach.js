@@ -1,4 +1,4 @@
-import {html} from '../components/preact.js';
+import {html} from '../../components/preact.js';
 
 
 export const Rorschach = () => {

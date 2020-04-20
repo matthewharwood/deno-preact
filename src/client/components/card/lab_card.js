@@ -1,7 +1,7 @@
 import {html} from '../preact.js';
 import {useStatic} from '../hooks/use_cloudinary.js';
 
-const LabCard = () => {
+const LabCard = ({link}) => {
   const src = useStatic('sample.jpg');
   return html`
   <div class="rounded overflow-hidden shadow-lg">
