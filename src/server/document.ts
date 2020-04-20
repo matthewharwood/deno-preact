@@ -33,14 +33,14 @@ export const Document = ({ title, content }: any) => {
         </style>
       </head>
       <body>
-       <div id="aux" class="fixed inset-0 text-black transform -translate-x-full bg-gray-400"></div>
-        <main id="main">
+       <div data-outlet="aux" class="fixed inset-0 text-black transform -translate-x-full bg-gray-400"></div>
+        <main data-outlet="main">
           ${content}
         </main>
-        <div id="work" class="fixed inset-0 text-black transform translate-x-full"></div>
-        <div id="lab" class="fixed inset-0 text-black transform translate-x-full"></div>
-        <div id="lab-a"></div>
-        <div id="profile" class="fixed inset-0 text-black transform translate-x-full"></div>
+        <div data-outlet="work" class="fixed inset-0 text-black transform translate-x-full"></div>
+        <div data-outlet="lab" class="fixed inset-0 text-black transform translate-x-full"></div>
+        <div data-outlet="labA"></div>
+        <div data-outlet="profile" class="fixed inset-0 text-black transform translate-x-full"></div>
         <script type="module" src="deno-preact.modern.js" defer></script>
       </body>
     </html>`;
