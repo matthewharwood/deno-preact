@@ -3,7 +3,7 @@ import {LabCard} from '../components/card/lab_card.js';
 
 export const Lab = () => {
   return html`
-    <div class="flex flex-wrap m-auto p-2 bg-gray-200 min-h-screen relative">
+    <div class="flex flex-wrap m-auto p-2 bg-gray-200 min-h-screen relative pt-20">
       <a class=" w-full">
         <h1 class="text-6xl">Lab</h1>
       </a>
