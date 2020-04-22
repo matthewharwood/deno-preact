@@ -4,6 +4,7 @@ import {RunningHeader} from './running_header/running_header.js';
 import {Boner} from './boner/boner.js';
 import {Marquee} from './boner/marquee.js';
 import {isClient} from '../../utils/which_env.js';
+import {PageNavigation} from './page_navigation/page_navigation.js';
 
 function autoHydrate(Component, name) {
   if (isClient) {
@@ -27,6 +28,7 @@ const COMPONENT_MAP = {
   Marquee,
   RunningHeader,
   Boner,
+  PageNavigation,
 }
 
 const AH = {};

@@ -3,6 +3,8 @@
 export const KEYS = {
   FADE_OUT: 'FADE_OUT',
   FADE_IN: 'FADE_IN',
+  FLY_OUT: 'FLY_OUT',
+  SLIDE_OUT_TOP: 'SLIDE_OUT_TOP',
   SLIDE_IN_LEFT: 'SLIDE_IN_LEFT',
   SLIDE_IN_RIGHT: 'SLIDE_IN_RIGHT',
   SLIDE_IN_TOP: 'SLIDE_IN_TOP',
@@ -11,6 +13,8 @@ export const KEYS = {
 }
 export const KEYFRAMES = {
   [KEYS.FADE_OUT]: [{ opacity: 1 }, { opacity: 0 }],
+  [KEYS.FLY_OUT]: [{ opacity: 1,  transform: 'translate3d(0, 0, 0)', }, { opacity: 0, transform: 'translate3d(-100%, 0, 0)' }],
+  [KEYS.SLIDE_OUT_TOP]: [{transform: 'translate3d(0, 0, 0)'},{transform: 'translate3d(0, -100%, 0)'} ],
   [KEYS.SLIDE_IN_LEFT]: [{transform: 'translate3d(-100%, 0, 0)'},{transform: 'translate3d(0, 0, 0)'} ],
   [KEYS.SLIDE_IN_TOP]: [{transform: 'translate3d(0, -100%, 0)'},{transform: 'translate3d(0, 0, 0)'} ],
   [KEYS.SLIDE_IN_RIGHT]: [{transform: 'translate3d(100%, 0,0'}, {transform: 'translate3d(0,0,0)'}],
@@ -34,6 +38,15 @@ export const RouteConfig = {
       ],
       work: [{selector: ROUTE.MAIN.SELECTOR, keyframes: KEYFRAMES.FADE_OUT}, {selector: ROUTE.WORK.SELECTOR, keyframes: KEYFRAMES.SLIDE_IN_LEFT}],
       profile: [{selector: ROUTE.MAIN.SELECTOR, keyframes: KEYFRAMES.FADE_OUT}, {selector: ROUTE.PROFILE.SELECTOR, keyframes: KEYFRAMES.SLIDE_IN_TOP}]
+    }
+  },
+  lab: {
+    onLeave: {
+      main : [
+        {selector: ROUTE.MAIN.SELECTOR, keyframes: KEYFRAMES.FADE_IN},
+        {selector: ROUTE.LAB.SELECTOR, keyframes: KEYFRAMES.FLY_OUT},
+        {selector: ROUTE.NAVIGATION.SELECTOR, keyframes: KEYFRAMES.SLIDE_OUT_TOP},
+      ]
     }
   },
 }
