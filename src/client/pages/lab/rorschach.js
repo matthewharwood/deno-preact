@@ -3,6 +3,8 @@ import {html} from '../../components/preact.js';
 
 export const Rorschach = () => {
   return html`
-    <h1>Rorschach PAGE</h1>
+    <div style="height: 10000px">
+            <h1>Rorschach PAGE</h1>
+    </div>
   `;
 };

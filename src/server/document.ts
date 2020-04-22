@@ -38,7 +38,7 @@ export const Document = ({ title, content }: any) => {
           ${content}
         </main>
         <div data-outlet="work" class="fixed inset-0 text-black transform translate-x-full"></div>
-        <div data-outlet="lab" class="fixed inset-0 text-black transform translate-x-full"></div>
+        <div data-outlet="lab" class="fixed inset-0 text-black transform translate-x-full overflow-y-auto"></div>
         <div data-outlet="labA"></div>
         <div data-outlet="profile" class="fixed inset-0 text-black transform translate-x-full"></div>
         <script type="module" src="deno-preact.modern.js" defer></script>
